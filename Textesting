@@ -1,0 +1,122 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
+import java.util.Scanner;
+
+public class Textesting {
+
+	public static void main(String[] args) throws FileNotFoundException {
+		File infile = new File ("mobydick.txt");
+		Scanner inputfile = new Scanner(infile);
+		PrintStream fileOutput = new PrintStream ("chagedawin.txt");
+		
+		first (inputfile);
+		valueCalling(inputfile);
+		//CallingGpas(inputfile);
+		//callingTotalscore(inputfile);
+		//studentReport(inputfile, fileOutput);
+		mobydick(inputfile, fileOutput);
+		fileOutput.close();
+
+	}
+
+	private static void mobydick(Scanner inputfile, PrintStream fileOutput) {
+		while (inputfile.hasNextLine()) {
+			String line = inputfile.nextLine();
+			Scanner lineInput = new Scanner(line);
+			while (lineInput.hasNext()) {
+				String word = lineInput.next();
+				if (!word.equalsIgnoreCase("whale")) {
+					fileOutput.print(word +" ");
+				}
+				else {
+					if (word.equals("WHALE")){
+						fileOutput.print("DARWIN"+" ");
+					}else if (word.equals("Whales")){
+						fileOutput.print("Dawins"+" ");
+					}else if (word.equals("WHALES")){
+						fileOutput.print("DAWINS"+" ");
+					}
+				}
+					
+				
+			
+			}
+			System.out.println();
+			lineInput.close();
+			
+			
+		}
+		
+	}
+
+	private static void studentReport(Scanner inputfile, PrintStream fileOutput ) {
+		// breake the data sring into line and break the item into one by one to use the value.
+		while (inputfile.hasNextLine()) {
+			String line = inputfile.nextLine();
+			Scanner lineInput = new Scanner(line);
+			int total =0;
+			int id = lineInput.nextInt();
+			String name = lineInput.next();
+			while (lineInput.hasNextInt()) {
+				int value = lineInput.nextInt();
+				total += value;	
+			}		
+			fileOutput.printf("%s's ID: %d, total score: %d.\n", name, id, total);
+			lineInput.close();
+		}
+		
+	}
+
+	private static void callingTotalscore(Scanner inputfile) {
+		while (inputfile.hasNext()) {
+			String name = inputfile.next();
+			int total =0;
+			while (inputfile.hasNextInt()) {
+				int value = inputfile.nextInt();
+				total += value;	
+			}		
+			System.out.printf("%s's total is %d.\n", name, total);
+		}
+		inputfile.close();
+	}
+
+	private static void CallingGpas(Scanner inputfile) throws FileNotFoundException {
+		
+		
+		while (inputfile.hasNextLine()) {
+			String name = inputfile.next();
+			double gpa = inputfile.nextDouble();
+			System.out.printf("%s's gpa is %.2f.\n", name, gpa);
+				
+			
+		}
+		
+		inputfile.close();
+		
+	}
+	
+
+	private static void valueCalling(Scanner inputfile) throws FileNotFoundException {
+		
+		int total = 0;
+		while (inputfile.hasNextInt()) {
+			int value = inputfile.nextInt();
+			total += value;	
+		}
+		System.out.println(total);
+		inputfile.close();
+		
+	}
+
+	private static void first(Scanner inputfile) throws FileNotFoundException {
+		
+		while (inputfile.hasNextLine()) {
+			String text = inputfile.nextLine();
+			System.out.println(text.toUpperCase());
+		}
+		inputfile.close();
+		
+	}
+
+}
